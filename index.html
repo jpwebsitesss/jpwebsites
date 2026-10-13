@@ -226,6 +226,7 @@ footer{border-top:1px solid var(--linha);padding:28px 0 40px;color:var(--cinza);
       </div>
       <div class="acoes">
         <a class="btn" id="mail" href="mailto:jp.websitesss@gmail.com" data-t="cont_cta">Enviar e-mail</a>
+        <a class="btn btn-claro" id="zap" href="https://wa.me/5545988283283" target="_blank" rel="noopener" data-t="cont_zap">Chamar no WhatsApp</a>
         <a class="email" href="mailto:jp.websitesss@gmail.com">jp.websitesss@gmail.com</a>
       </div>
     </div>
@@ -261,17 +262,19 @@ const T = {
     p3_t:"Adjustments", p3_p:"We fine-tune the text, photos and details together.",
     p4_t:"Live", p4_p:"I publish the site and show you how to update what you need.",
     cont_t:"Shall we build yours?", cont_p:"Tell me what your business does. I'll reply with an idea of how your site could look.",
-    cont_cta:"Send an email", rodape:"Cascavel, Brazil · working with clients in Brazil and abroad"
+    cont_cta:"Send an email", cont_zap:"Message me on WhatsApp", rodape:"Cascavel, Brazil · working with clients in Brazil and abroad"
   }
 };
 const PT = {};
 document.querySelectorAll("[data-t]").forEach(el => PT[el.dataset.t] = el.textContent);
 const ASSUNTO = {pt:"Quero um site", en:"I want a website"};
+const ZAP = {pt:"Olá! Vi seu portfólio e quero um site.", en:"Hi! I saw your portfolio and I'd like a website."};
 function idioma(l){
   document.documentElement.lang = l === "en" ? "en" : "pt-BR";
   document.querySelectorAll("[data-t]").forEach(el => { el.textContent = (l === "en" ? T.en : PT)[el.dataset.t] || PT[el.dataset.t]; });
   document.querySelectorAll(".lingua button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === l));
   document.getElementById("mail").href = "mailto:jp.websitesss@gmail.com?subject=" + encodeURIComponent(ASSUNTO[l]);
+  document.getElementById("zap").href = "https://wa.me/5545988283283?text=" + encodeURIComponent(ZAP[l]);
   try { localStorage.setItem("jp_lang", l); } catch(e) {}
 }
 document.querySelectorAll(".lingua button").forEach(b => b.onclick = () => idioma(b.dataset.lang));
